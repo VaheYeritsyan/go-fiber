@@ -32,11 +32,11 @@ func setupRoutes(app *fiber.App) {
 }
 
 func main() {
-	database.ConnectDb()
+    database.ConnectDb()
 
-	app := fiber.New()
-	setupRoutes(app)
+    app := fiber.New()
+    setupRoutes(app)
 
-	log.Fatal(app.Listen(":4000"))
+	log.Fatal(app.Listen(":3000"))
 
 }
