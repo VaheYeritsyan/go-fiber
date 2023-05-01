@@ -3,7 +3,7 @@
 1. docker compose build
 2. docker compose up
 
-After that application will listen on port 3000 
+After that application will listen on port 8080 
 
 # Testing
 The API can be tested with the postman link
