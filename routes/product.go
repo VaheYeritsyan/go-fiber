@@ -104,3 +104,24 @@ func UpdateProduct(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(responseProduct)
 }
+
+func DeleteProduct(c *fiber.Ctx) error {
+ id, err := c.ParamsInt("id")
+
+ var product models.Product
+
+ if err != nil {
+  return c.Status(400).JSON("Please ensure that :id is an integer")
+ }
+
+ err = findProduct(id, &product)
+
+ if err != nil {
+  return c.Status(400).JSON(err.Error())
+ }
+
+ if err = database.Database.Db.Delete(&product).Error; err != nil {
+  return c.Status(404).JSON(err.Error())
+ }
+ return c.Status(200).JSON("Successfully deleted Product")
+}
