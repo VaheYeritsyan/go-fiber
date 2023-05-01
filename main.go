@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/VaheYeritsyan/go-fiber/database"
 	"github.com/VaheYeritsyan/go-fiber/routes"
 )
@@ -32,11 +33,9 @@ func setupRoutes(app *fiber.App) {
 }
 
 func main() {
-    database.ConnectDb()
-
-    app := fiber.New()
-    setupRoutes(app)
-
-	log.Fatal(app.Listen(":3000"))
-
+	database.ConnectDb()
+	app := fiber.New()
+	app.Use(cors.New())
+	setupRoutes(app)
+	log.Fatal(app.Listen(":8080"))
 }
